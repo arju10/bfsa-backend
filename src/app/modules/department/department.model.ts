@@ -3,6 +3,11 @@ import { TDepartment } from './department.interface';
 
 const departmentSchema = new Schema<TDepartment>(
   {
+    id: {
+      type: String,
+      required: true,
+      unique: true,
+    },
     name: {
       type: String,
       required: true,
