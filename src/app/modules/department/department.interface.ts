@@ -1,5 +1,5 @@
 export type TDepartment = {
-  id:string,
+  id: string;
   name: string;
   description: string;
   order: number;
