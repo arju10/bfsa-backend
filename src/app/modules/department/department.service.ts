@@ -3,11 +3,13 @@ import { DepartmentSearchableFields } from './department.constant';
 import { TDepartment } from './department.interface';
 import { Department } from './department.model';
 
+// Create Single Department==== API: ("/api/v1/departments/create-department) === Method :[ POST]
 const createDepartmentIntoDB = async (payload: TDepartment) => {
   const result = await Department.create(payload);
   return result;
 };
 
+// GEt All Departments==== API: ("/api/v1/departments) === Method :[ GET]
 const getAllDepartmentsFromDB = async (query: Record<string, unknown>) => {
   const departmentQuery = new QueryBuilder(Department.find(), query)
     .search(DepartmentSearchableFields)
@@ -25,12 +27,14 @@ const getAllDepartmentsFromDB = async (query: Record<string, unknown>) => {
   };
 };
 
+// Get Single Department By ID ==== API: ("/api/v1/departments/:id") === Method :[ GET]
 const getSingleDepartmentFromDB = async (id: string) => {
   const result = await Department.findById(id);
   // console.log(`Searching for department with ID: ${id}`);
   return result;
 };
 
+// Update Single Department By ID ==== API: ("/api/v1/departments/:id") === Method :[ PATCH]
 const updateDepartmentIntoDB = async (
   id: string,
   payload: Partial<TDepartment>,
