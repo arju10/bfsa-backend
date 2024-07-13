@@ -2,9 +2,6 @@ import { z } from 'zod';
 
 const createSupplierValidationSchema = z.object({
   body: z.object({
-    supplierId: z.string({
-      invalid_type_error: 'Supplier must be string',
-    }),
     name: z.string({
       invalid_type_error: 'Supplier must be string',
     }),
@@ -19,10 +16,6 @@ const createSupplierValidationSchema = z.object({
     contactPerson: z.string({
       invalid_type_error: 'Contact must be string',
     }),
-    // order: z
-    //   .number({
-    //     invalid_type_error: 'Order must be number',
-    //   }),
   }),
 });
 
@@ -53,10 +46,6 @@ const updateSupplierValidationSchema = z.object({
         invalid_type_error: 'Contact must be string',
       })
       .optional(),
-    // order: z
-    //   .number({
-    //     invalid_type_error: 'Order must be number',
-    //   }).optional(),
   }),
 });
 
