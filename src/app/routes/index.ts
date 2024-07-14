@@ -3,6 +3,7 @@
 import express from 'express';
 import { DepartmentRoutes } from '../modules/department/department.route';
 import { SupplierRoutes } from '../modules/supplier/supplier.route';
+import { EmployeeRoutes } from '../modules/employee/employee.route';
 
 const router = express.Router();
 
@@ -14,6 +15,10 @@ const moduleRoutes = [
   {
     path: '/suppliers',
     route: SupplierRoutes,
+  },
+  {
+    path: '/employees',
+    route: EmployeeRoutes,
   },
 ];
 
