@@ -16,10 +16,9 @@ export type TUserName = {
   lastName: string;
 };
 
-export type TEmployee = {
+export type TAdmin = {
   id: string;
   user: Types.ObjectId;
-  // designation: Types.ObjectId;
   designation: string;
   name: TUserName;
   gender: TGender;
@@ -31,11 +30,9 @@ export type TEmployee = {
   presentAddress: string;
   permanentAddress: string;
   profileImg?: string;
-  department: Types.ObjectId;
   isDeleted: boolean;
 };
 
-export interface EmployeeModel extends Model<TEmployee> {
-  // eslint-disable-next-line no-unused-vars
-  isUserExists(id: string): Promise<TEmployee | null>;
+export interface AdminModel extends Model<TAdmin> {
+  isUserExists(id: string): Promise<TAdmin | null>;
 }

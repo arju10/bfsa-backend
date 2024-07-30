@@ -1,6 +1,6 @@
 import { Schema, model } from 'mongoose';
-import { EmployeeModel, TEmployee, TUserName } from './employee.interface';
-import { BloodGroup, Gender } from './employee.constant';
+import { BloodGroup, Gender } from './admin.constant';
+import { AdminModel, TAdmin, TUserName } from './admin.interface';
 
 const userNameSchema = new Schema<TUserName>({
   firstName: {
@@ -9,7 +9,6 @@ const userNameSchema = new Schema<TUserName>({
     trim: true,
     maxlength: [20, 'Name can not be more than 20 characters'],
   },
-
   lastName: {
     type: String,
     trim: true,
@@ -18,7 +17,7 @@ const userNameSchema = new Schema<TUserName>({
   },
 });
 
-const employeeSchema = new Schema<TEmployee, EmployeeModel>(
+const adminSchema = new Schema<TAdmin, AdminModel>(
   {
     id: {
       type: String,
@@ -31,12 +30,6 @@ const employeeSchema = new Schema<TEmployee, EmployeeModel>(
       unique: true,
       ref: 'User',
     },
-
-    // designation: {
-    //   type: Schema.Types.ObjectId,
-    //   required: [true, 'Designation id is required'],
-    //   ref: 'Designation',
-    // },
     designation: {
       type: String,
       required: [true, 'Designation is required'],
@@ -80,11 +73,6 @@ const employeeSchema = new Schema<TEmployee, EmployeeModel>(
       required: [true, 'Permanent address is required'],
     },
     profileImg: { type: String, default: '' },
-    department: {
-      type: Schema.Types.ObjectId,
-      required: [true, 'Department is required'],
-      ref: 'Department',
-    },
     isDeleted: {
       type: Boolean,
       default: false,
@@ -98,33 +86,30 @@ const employeeSchema = new Schema<TEmployee, EmployeeModel>(
 );
 
 // generating full name
-employeeSchema.virtual('fullName').get(function () {
-  return this?.name?.firstName + '' + this?.name?.lastName;
+adminSchema.virtual('fullName').get(function () {
+  return this?.name?.firstName + '' + '' + this?.name?.lastName;
 });
 
-// // filter out deleted documents
-employeeSchema.pre('find', function (next) {
+// filter out deleted documents
+adminSchema.pre('find', function (next) {
   this.find({ isDeleted: { $ne: true } });
   next();
 });
 
-employeeSchema.pre('findOne', function (next) {
+adminSchema.pre('findOne', function (next) {
   this.find({ isDeleted: { $ne: true } });
   next();
 });
 
-employeeSchema.pre('aggregate', function (next) {
+adminSchema.pre('aggregate', function (next) {
   this.pipeline().unshift({ $match: { isDeleted: { $ne: true } } });
   next();
 });
 
 //checking if user is already exist!
-employeeSchema.statics.isUserExists = async function (id: string) {
-  const existingUser = await Employee.findOne({ id });
+adminSchema.statics.isUserExists = async function (id: string) {
+  const existingUser = await Admin.findOne({ id });
   return existingUser;
 };
 
-export const Employee = model<TEmployee, EmployeeModel>(
-  'Employee',
-  employeeSchema,
-);
+export const Admin = model<TAdmin, AdminModel>('Admin', adminSchema);
