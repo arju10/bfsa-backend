@@ -5,18 +5,11 @@ import { EmployeeControllers } from './employee.controller';
 
 const router = Router();
 
-// CRUD routes for employee
-// router.post('/employees', roleMiddleware([UserRole.ROLE_SUPER_ADMIN, UserRole.ROLE_ADMIN]), employeeControllers.createemployee);
-// router.get('/employees', roleMiddleware([UserRole.ROLE_SUPER_ADMIN, UserRole.ROLE_ADMIN, UserRole.ROLE_EMPLOYEE]), employeeControllers.getAllemployees);
-// router.get('/employees/:id', roleMiddleware([UserRole.ROLE_SUPER_ADMIN, UserRole.ROLE_ADMIN, UserRole.ROLE_EMPLOYEE]), employeeControllers.getemployeeById);
-// router.patch('/employees/:id', roleMiddleware([UserRole.ROLE_SUPER_ADMIN, UserRole.ROLE_ADMIN]), employeeControllers.updateemployee);
-// router.delete('/employees/:id', roleMiddleware([UserRole.ROLE_SUPER_ADMIN, UserRole.ROLE_ADMIN]), employeeControllers.deleteemployee);
-
-router.post(
-  '/create-employee',
-  validateRequest(EmployeeValidations.createEmployeeValidationSchema),
-  EmployeeControllers.createEmployee,
-);
+// router.post(
+//   '/create-employee',
+//   validateRequest(EmployeeValidations.createEmployeeValidationSchema),
+//   EmployeeControllers.createEmployee,
+// );
 router.get('/:id', EmployeeControllers.getSingleEmployee);
 router.patch(
   '/:id',

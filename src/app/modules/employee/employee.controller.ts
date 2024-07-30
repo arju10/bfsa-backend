@@ -6,15 +6,15 @@ import { EmployeeServices } from './employee.service';
 import { TEmployee } from './employee.interface';
 
 // Crate Single Employee==== API: ("/api/v1/employees/create-employee") === Method :[ POST]
-const createEmployee = catchAsync(async (req: Request, res: Response) => {
-  const result = await EmployeeServices.createEmployeeIntoDB(req.body);
-  sendResponse(res, {
-    statusCode: httpStatus.OK,
-    success: true,
-    message: 'Employee is created successfully',
-    data: result,
-  });
-});
+// const createEmployee = catchAsync(async (req: Request, res: Response) => {
+//   const result = await EmployeeServices.createEmployeeIntoDB(req.body);
+//   sendResponse(res, {
+//     statusCode: httpStatus.OK,
+//     success: true,
+//     message: 'Employee is created successfully',
+//     data: result,
+//   });
+// });
 // Get All Employees ==== API: ("/api/v1/employees") === Method :[ GET]
 const getAllEmployees = catchAsync(async (req, res) => {
   const result = await EmployeeServices.getAllEmployeesFromDB(req.query);
@@ -74,7 +74,7 @@ const deleteEmployee = catchAsync(async (req: Request, res: Response) => {
 });
 
 export const EmployeeControllers = {
-  createEmployee,
+  // createEmployee,
   getAllEmployees,
   getSingleEmployee,
   updateSingeEmployee,

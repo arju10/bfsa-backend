@@ -4,10 +4,10 @@ import { TEmployee } from './employee.interface';
 import { Employee } from './employee.model';
 
 // Crate Single Employee==== API: ("/api/v1/employees/create-employee") === Method :[ POST]
-const createEmployeeIntoDB = async (payload: TEmployee) => {
-  const result = await Employee.create(payload);
-  return result;
-};
+// const createEmployeeIntoDB = async (payload: TEmployee) => {
+//   const result = await Employee.create(payload);
+//   return result;
+// };
 
 // Get All Employees ==== API: ("/api/v1/employees") === Method :[ GET]
 const getAllEmployeesFromDB = async (query: Record<string, unknown>) => {
@@ -56,7 +56,7 @@ const deleteSingleEmployeeFromDB = async (
 };
 
 export const EmployeeServices = {
-  createEmployeeIntoDB,
+  // createEmployeeIntoDB,
   getAllEmployeesFromDB,
   getSingleEmployeeFromDB,
   updateSingleEmployeeFromDB,
